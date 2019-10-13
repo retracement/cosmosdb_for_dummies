@@ -1,0 +1,39 @@
+-- Query all our documents
+SELECT * FROM Families f
+
+
+
+-- Query all our documents using property as predicate
+SELECT *
+FROM Families f
+WHERE f.id = "AndersenFamily"
+
+
+
+-- Internally JOIN our documents and show
+-- me the names of Wakefield family children
+-- ordering by the city property 
+SELECT c.givenName
+FROM Families f
+JOIN c IN f.children
+WHERE f.id = 'WakefieldFamily'
+ORDER BY f.address.city ASC
+
+
+
+-- Internally JOIN our documents and show
+-- me the names of all the children 
+SELECT c.givenName, c.firstName --note the extra column!
+FROM Families f
+JOIN c IN f.children
+ORDER BY f.address.city ASC
+
+
+
+-- By default query will return as a JSON document
+-- Instead return only values as an array
+SELECT VALUE f.id
+FROM Families f
+
+
+===end=====
